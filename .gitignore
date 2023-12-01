@@ -1,0 +1,7 @@
+# Hide source modules
+node_modules
+docker-compose.yml
+
+# Hide databases
+.env
+.DS_Store
