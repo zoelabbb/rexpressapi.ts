@@ -104,3 +104,4 @@ app.use((_req, _res, next) => {
 app.listen(3000, () => {
     console.log(`Server is running on port 3000`);
 });
+//# sourceMappingURL=index.js.map
