@@ -2,6 +2,14 @@
 
 This repository contains a simple REST API for managing blog-related functionalities, including creating posts, creating users, fetching a feed of posts, deleting posts, and updating posts. This API is built using [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), [Prisma](https://www.prisma.io/), and [TypeScript](https://www.typescriptlang.org/)] for database interactions I'am using PostgreSQL [fl0](https://fl0.com/).
 
+## Tech Stack
+
+- **Node.js:** A runtime environment for executing JavaScript code server-side.
+- **Express.js:** A fast and minimalist web framework for Node.js.
+- **TypeScript:** A typed superset of JavaScript that adds static types for better code quality.
+- **Prisma:** An open-source database toolkit for Node.js and TypeScript.
+
+
 ## Features
 
 1. **Create Post**: Allows the creation of new blog posts.
