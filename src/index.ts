@@ -9,7 +9,9 @@ app.use(express.json());
 
 // TODO: Routing aplikasi
 app.get('/', (_req: Request, res: Response) => {
-    res.send('Welcome to Express Js & Typescript Rest API with Prisma');
+    const welcome =  'Welcome to Express Js & Typescript Rest API with Prisma';
+    const isi = 'Hello World';
+    res.send({welcome, isi});
 });
 
 // Get all feed, using method findMany()
