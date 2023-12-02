@@ -5,3 +5,6 @@ docker-compose.yml
 # Hide databases
 .env
 .DS_Store
+
+# Another file
+db.txt

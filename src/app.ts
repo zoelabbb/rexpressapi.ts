@@ -3,13 +3,12 @@ import express, { Request, Response } from "express";
 import createHttpError from "http-errors";
 
 import postRouter from "./routes/postRoutes";
+import userRouter from "./routes/userRoutes";
 
 const prisma = new PrismaClient();
 const app = express();
 
 app.use(express.json());
-
-app.use("/post", postRouter);
 
 // Route home
 app.get('/', (_req: Request, res: Response) => {
@@ -19,6 +18,10 @@ app.get('/', (_req: Request, res: Response) => {
     const htmlresponse = welcome + isi;
     res.send(htmlresponse);
 });
+
+app.use("/post", postRouter);
+app.use('/login', userRouter);
+app.use('/auth', userRouter);
 
 // Get all feed, using method findMany()
 app.get("/feed", async (_req: Request, res: Response) => {
@@ -35,37 +38,6 @@ app.get("/feed", async (_req: Request, res: Response) => {
 
     // Return all posts.
     res.json(posts);
-});
-
-// Get create user
-app.post('/user', async (_req: Request, res: Response) => {
-    try {
-        // Extrack username and email from request body
-        const { username, email } = _req.body;
-
-        // Check if username and email already used.
-        const existUser = await prisma.user.findUnique({
-            where: {
-                username: String(username),
-                email: String(email)
-            }
-        });
-
-        if (existUser) {
-            return res.status(400).json({ message: "Username or Email already used." });
-        }
-
-        // If unique, create new user
-        const result = await prisma.user.create({
-            data: {
-                ..._req.body
-            }
-        });
-        res.json(result);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Sorry, please fill the data correctly !!' });
-    }
 });
 
 // Get user by username
@@ -91,6 +63,6 @@ app.use((_req: Request, _res: Response, next: Function) => {
     next(createHttpError(404));
 });
 
-app.listen(3000, () => {
-    console.log(`Server is running on port 3000`);
+app.listen(8080, () => {
+    console.log(`Server is running on port 8080`);
 });
