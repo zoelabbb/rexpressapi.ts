@@ -1,7 +1,7 @@
 {
   "name": "microsblog",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple and efficient REST API for managing blog posts and users. Built with Node.js, Express.js, TypeScript, and Prisma",
   "main": "./src/index.ts",
   "scripts": {
     "dev": "npx nodemon ./src/index.ts",
