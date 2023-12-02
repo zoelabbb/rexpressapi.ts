@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
     "version": 2,
-=======
-    "version": "0.2.0",
->>>>>>> f23b65314ed75f99c57fab08be348c96e9953899
     "name": "microsblog",
     "builds": [
         {
