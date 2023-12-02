@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "name": "microsblog",
+    "builds": [
+        {
+            "src": "src/index.ts",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "src/index.ts"
+        }
+    ]
+}
