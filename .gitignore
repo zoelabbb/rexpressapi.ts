@@ -8,3 +8,4 @@ docker-compose.yml
 
 # Another file
 db.txt
+dist
