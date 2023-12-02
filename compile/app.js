@@ -15,14 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const client_1 = require("@prisma/client");
 const express_1 = __importDefault(require("express"));
 const http_errors_1 = __importDefault(require("http-errors"));
+const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
-// TODO: Routing aplikasi
+app.use("/post", postRoutes_1.default);
+// Route home
 app.get('/', (_req, res) => {
-    const welcome = 'Welcome to Express Js & Typescript Rest API with Prisma';
-    const isi = 'Hello World';
-    res.send([welcome, '\n', isi]);
+    const welcome = '<h1>Welcome to Express Js & Typescript Rest API with Prisma</h1>';
+    const isi = '<p>Routes : <a href="/post">/post</a></p>';
+    const htmlresponse = welcome + isi;
+    res.send(htmlresponse);
 });
 // Get all feed, using method findMany()
 app.get("/feed", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -37,51 +40,6 @@ app.get("/feed", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     // Return all posts.
     res.json(posts);
-}));
-app.post('/post', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { content, authorEmail } = _req.body;
-    const result = yield prisma.post.create({
-        data: {
-            content,
-            author: {
-                connect: {
-                    email: authorEmail
-                }
-            }
-        }
-    });
-    res.json(result);
-}));
-// Get post by ID
-app.get('/post/:id', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = _req.params;
-    const post = yield prisma.post.findUnique({
-        where: {
-            id: Number(id)
-        }
-    });
-    res.json(post);
-}));
-// Get put post by ID
-app.put('/post/:id', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = _req.params;
-    const post = yield prisma.post.update({
-        where: {
-            id: Number(id)
-        },
-        data: Object.assign({}, _req.body)
-    });
-    res.json(post);
-}));
-// Delete post by ID
-app.delete('/post/:id', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = _req.params;
-    const post = yield prisma.post.delete({
-        where: {
-            id: Number(id)
-        }
-    });
-    res.json(post);
 }));
 // Get create user
 app.post('/user', (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -106,4 +64,4 @@ app.use((_req, _res, next) => {
 app.listen(3000, () => {
     console.log(`Server is running on port 3000`);
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=app.js.map
