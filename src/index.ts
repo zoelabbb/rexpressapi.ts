@@ -16,6 +16,7 @@ app.get('/', (_req: Request, res: Response) => {
     const isi = '<p>Routes : <a href="/feed">/feed</a> | <a href="/user">/user</a></p>';
 
     const htmlresponse = welcome + isi;
+    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.send(htmlresponse);
 });
 
@@ -33,10 +34,12 @@ app.get("/feed", async (_req: Request, res: Response) => {
 
     if (posts.length === 0) {
         // Return 404 if posts not found
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
         return res.status(404).json({ message: "Posts not found, try create one." });
     }
 
     // Return all posts.
+    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.json(posts);
 });
 
@@ -54,6 +57,7 @@ app.get('/:username', async (_req: Request, res: Response) => {
         res.json(user);
     } catch (error) {
         console.error(error);
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
         res.status(500).json({ error: 'Sorry, you cannot find this user !!' });
     }
 })
