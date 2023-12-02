@@ -16,7 +16,6 @@ export const login = async (req: Request, res: Response) => {
             }
         });
         if (!user || user.password !== password) {
-            res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
             return res.status(401).json({ error: 'Username or Password incorrec' });
         }
         const token = jwt.sign({ userId: user.id }, tokenKey, { expiresIn: '1h' });
@@ -24,7 +23,6 @@ export const login = async (req: Request, res: Response) => {
         res.json({ token });
     } catch (error) {
         console.error(error);
-        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
         res.status(500).json({ error: 'Internal server error.' });
     }
 }
@@ -43,7 +41,6 @@ export const createUser = async (req: Request, res: Response) => {
         });
 
         if (existUser) {
-            res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
             return res.status(400).json({ message: "Username or Email already used." });
         }
 
@@ -57,7 +54,6 @@ export const createUser = async (req: Request, res: Response) => {
         res.json(result);
     } catch (error) {
         console.error(error);
-        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
         res.status(500).json({ error: 'Sorry, please fill the data correctly !!' });
     }
 }

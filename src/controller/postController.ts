@@ -20,7 +20,6 @@ export const createPost = async (req: Request, res: Response) => {
     res.json(result);
   } catch (error) {
     console.error(error);
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.status(500).json({ error: 'Sorry, please fill the data first !!' });
   }
 };
@@ -34,14 +33,12 @@ export const getPostById = async (req: Request, res: Response) => {
       },
     });
     if (!post) {
-      res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
       return res.status(404).json({ error: 'Post not found' });
     }
     res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.json(post);
   } catch (error) {
     console.error(error);
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
@@ -61,7 +58,6 @@ export const updatePostById = async (req: Request, res: Response) => {
     res.json(post);
   } catch (error) {
     console.error(error);
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
@@ -78,7 +74,6 @@ export const deletePostById = async (req: Request, res: Response) => {
     res.json(post);
   } catch (error) {
     console.error(error);
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30') // set caching header
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
