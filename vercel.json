@@ -13,6 +13,5 @@
             "src": "/(.*)",
             "dest": "compile/index.js"
         }
-    ],
-    "cleanUrls": true
+    ]
 }
