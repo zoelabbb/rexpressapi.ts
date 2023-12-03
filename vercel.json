@@ -3,15 +3,15 @@
     "name": "microsblog",
     "builds": [
         {
-            "src": "compile/index.js",
+            "src": "src/index.ts",
             "use": "@vercel/node",
-            "config": { "includeFiles": ["compile/**"] }
+            "config": { "includeFiles": ["src/**"] }
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "compile/index.js"
+            "dest": "src/index.ts"
         }
     ]
 }
