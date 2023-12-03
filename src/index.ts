@@ -7,6 +7,7 @@ import userRouter from "./routes/userRoutes";
 
 const prisma = new PrismaClient();
 const app = express();
+const port = process.env.PORT || 8080
 
 app.use(express.json());
 
@@ -67,6 +68,6 @@ app.use((_req: Request, _res: Response, next: Function) => {
     next(createHttpError(404));
 });
 
-app.listen(8080, () => {
-    console.log(`Server is running on port 8080`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

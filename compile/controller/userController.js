@@ -29,6 +29,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.status(401).json({ error: 'Username or Password incorrec' });
         }
         const token = jsonwebtoken_1.default.sign({ userId: user.id }, tokenKey, { expiresIn: '1h' });
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json({ token });
     }
     catch (error) {
@@ -55,6 +56,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const result = yield prisma.user.create({
             data: Object.assign({}, req.body)
         });
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json(result);
     }
     catch (error) {

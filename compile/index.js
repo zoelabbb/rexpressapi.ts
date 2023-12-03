@@ -19,12 +19,14 @@ const postRoutes_1 = __importDefault(require("./routes/postRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const prisma = new client_1.PrismaClient();
 const app = (0, express_1.default)();
+const port = process.env.PORT || 8080;
 app.use(express_1.default.json());
 // Route home
 app.get('/', (_req, res) => {
     const welcome = '<h1>Welcome to Express Js & Typescript Rest API with Prisma</h1>';
     const isi = '<p>Routes : <a href="/feed">/feed</a> | <a href="/user">/user</a></p>';
     const htmlresponse = welcome + isi;
+    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
     res.send(htmlresponse);
 });
 app.use("/post", postRoutes_1.default);
@@ -39,9 +41,11 @@ app.get("/feed", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
     if (posts.length === 0) {
         // Return 404 if posts not found
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         return res.status(404).json({ message: "Posts not found, try create one." });
     }
     // Return all posts.
+    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
     res.json(posts);
 }));
 // Get user by username
@@ -58,6 +62,7 @@ app.get('/:username', (_req, res) => __awaiter(void 0, void 0, void 0, function*
     }
     catch (error) {
         console.error(error);
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.status(500).json({ error: 'Sorry, you cannot find this user !!' });
     }
 }));
@@ -65,7 +70,7 @@ app.get('/:username', (_req, res) => __awaiter(void 0, void 0, void 0, function*
 app.use((_req, _res, next) => {
     next((0, http_errors_1.default)(404));
 });
-app.listen(8080, () => {
-    console.log(`Server is running on port 8080`);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map

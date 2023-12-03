@@ -25,6 +25,7 @@ const createPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 },
             },
         });
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json(result);
     }
     catch (error) {
@@ -44,6 +45,7 @@ const getPostById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         if (!post) {
             return res.status(404).json({ error: 'Post not found' });
         }
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json(post);
     }
     catch (error) {
@@ -61,6 +63,7 @@ const updatePostById = (req, res) => __awaiter(void 0, void 0, void 0, function*
             },
             data: Object.assign({}, req.body),
         });
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json(post);
     }
     catch (error) {
@@ -77,6 +80,7 @@ const deletePostById = (req, res) => __awaiter(void 0, void 0, void 0, function*
                 id: Number(id),
             },
         });
+        res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=30'); // set caching header
         res.json(post);
     }
     catch (error) {
