@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx prisma generate && tsc",
     "build": "npx prisma generate && tsc",
-    "ts.check": "tsc --project tsconfig.json"
+    "ts.check": "tsc --project tsconfig.json",
+    "heroku-prebuild": "npm install -g typescript"
   },
   "keywords": [
     "Rest API",

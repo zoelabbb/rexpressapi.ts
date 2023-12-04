@@ -1,11 +1,10 @@
-// import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import createHttpError from "http-errors";
 
 import postRouter from "./routes/postRoutes";
 import userRouter from "./routes/userRoutes";
 
-const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const app = express();
 const port = process.env.PORT || 8080
