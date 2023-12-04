@@ -1,0 +1,12 @@
+# Hide source modules
+node_modules
+docker-compose.yml
+package-lock.json
+
+# Hide databases
+.env
+.DS_Store
+
+# Another file
+db.txt
+dist
