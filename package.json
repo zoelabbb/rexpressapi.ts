@@ -4,7 +4,7 @@
   "description": "A simple and efficient REST API for managing blog posts and users. Built with Node.js, Express.js, TypeScript, and Prisma",
   "main": "./src/index.ts",
   "scripts": {
-    "dev": "bun run ./src/index.ts",
+    "dev": "npx nodemon ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx prisma generate && tsc",
     "build": "npx prisma generate && tsc",
